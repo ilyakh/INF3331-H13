@@ -1,27 +1,3 @@
-
-
-translate(v = [0, 0, 0]) {
-	union() {
-		translate(v = [0, 0, 6.0000000000]) {
-			difference() {
-				cube(center = true, size = [30.0000000000, 20.0000000000, 5.0000000000]);
-				translate(v = [0, 0, 2.5000000000]) {
-					cube(center = true, size = [26.0000000000, 14.0000000000, 5.0000000000]);
-				}
-			}
-		}
-		translate(v = [0, 0, 5.0000000000]) {
-			cube(center = true, size = [30.0000000000, 20.0000000000, None]);
-		}
-		translate(v = [0, 0, 2.5000000000]) {
-			cube(center = true, size = [26.0000000000, 14.0000000000, 5.0000000000]);
-		}
-	}
-}
-/***********************************************
-******      SolidPython code:      *************
-************************************************
- 
 # -*- coding: utf-8 -*- 
 
 from core import *
@@ -94,7 +70,4 @@ if __name__ == "__main__":
         }
     )
 
-    scad_render_to_file( e.put(), "project.scad" ) 
- 
-***********************************************/
-                            
+    scad_render_to_file( e.put(), "project.scad" )
