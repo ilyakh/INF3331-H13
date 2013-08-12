@@ -61,15 +61,25 @@ class Support( Element ):
 
     def create_bolt_holes( self ):
 
-        offset_from_center = self.s.half('y') - \
+
+
+        x_offset_from_center = self.s.half('x') - \
+                             (self.p.get('bolt_hole_radius') + \
+                              self.p.get('bolt_hole_outer_offset'))
+
+        y_offset_from_center = self.s.half('y') - \
                              (self.p.get('bolt_hole_radius') + \
                               self.p.get('bolt_hole_outer_offset'))
 
         return union() (
-            translate([]) (
-                back( offset_from_center ) ( self.create_bolt_hole() ),
-                forward( offset_from_center ) ( self.create_bolt_hole() )
-            )
+            left( x_offset_from_center ) (
+                back( y_offset_from_center ) ( self.create_bolt_hole() ),
+                forward( y_offset_from_center ) ( self.create_bolt_hole() )
+            ),
+            right( x_offset_from_center ) (
+                back( y_offset_from_center ) ( self.create_bolt_hole() ),
+                forward( y_offset_from_center ) ( self.create_bolt_hole() )
+            ),
         )
 
     def create_first_layer( self ):
@@ -110,31 +120,42 @@ class Support( Element ):
             self.create_first_layer()
         )
 
-    def create_third_layer( self ):
-        return self.create_first_layer()
-
     def create( self ):
 
-        spacing = 20
+        spacing = 30
 
         # position with a equidistant point-cloud
 
         return union() (
-            translate( 0 ) (
+            #
+            translate( [0, 0, 0] ) (
                 self.apply_bolt_holes( self.create_first_layer() )
             ),
-            translate( self.s.x + spacing ) (
+            translate( [ self.s.x + spacing, 0, 0] ) (
                 self.apply_bolt_holes( self.create_second_layer() )
             ),
-            translate( self.s.y + spacing ) (
-                self.apply_bolt_holes(
-                    self.create_first_layer()
+
+
+            #
+
+            translate( [0, self.s.y + spacing, 0] ) (
+
+                translate( [ 0, 0, 0 ] ) (
+                    self.apply_bolt_holes(
+                        rotate( 90, [0,0,1] ) (
+                            self.create_first_layer()
+                        )
+                    )
+                ),
+
+                translate( [ self.s.x + spacing, 0, 0 ] ) (
+                    self.apply_bolt_holes(
+                        rotate( 90, [0,0,1] ) (
+                            self.create_second_layer()
+                        )
+                    )
                 )
-            )
-            translate( self.s.y + spacing ) (
-                self.apply_bolt_holes(
-                    self.create_first_layer()
-                )
+
             )
 
         )
@@ -143,7 +164,7 @@ if __name__ == "__main__":
 
 
     e = Support(
-        Size( 40, 40, 20 ),
+        Size( 35, 40, 20 ),
         parameters={
             'segments': 32,
             'outer_length': 5.0 ,

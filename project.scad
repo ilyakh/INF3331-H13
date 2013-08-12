@@ -9,9 +9,9 @@ translate() {
 						union() {
 							translate(v = [4.8450000000, 0, 0]) {
 								difference() {
-									cube(center = true, size = [35.3100000000, 40, 20]);
+									cube(center = true, size = [30.3100000000, 40, 20]);
 									rotate(a = 90, v = [0, 1, 0]) {
-										cylinder(h = 70.6200000000, r = 7.0000000000, center = true);
+										cylinder(h = 60.6200000000, r = 7.0000000000, center = true);
 									}
 								}
 							}
@@ -25,9 +25,9 @@ translate() {
 							}
 							translate(v = [-4.8450000000, 0, 0]) {
 								difference() {
-									cube(center = true, size = [35.3100000000, 40, 20]);
+									cube(center = true, size = [30.3100000000, 40, 20]);
 									rotate(a = 90, v = [0, 1, 0]) {
-										cylinder(h = 70.6200000000, r = 7.0000000000, center = true);
+										cylinder(h = 60.6200000000, r = 7.0000000000, center = true);
 									}
 								}
 							}
@@ -38,7 +38,15 @@ translate() {
 					}
 				}
 				union() {
-					translate(v = []) {
+					translate(v = [-13.0000000000, 0, 0]) {
+						translate(v = [0, -15.5000000000, 0]) {
+							cylinder($fn = 32, h = 100, r = 3.0000000000, center = true);
+						}
+						translate(v = [0, 15.5000000000, 0]) {
+							cylinder($fn = 32, h = 100, r = 3.0000000000, center = true);
+						}
+					}
+					translate(v = [13.0000000000, 0, 0]) {
 						translate(v = [0, -15.5000000000, 0]) {
 							cylinder($fn = 32, h = 100, r = 3.0000000000, center = true);
 						}
@@ -49,7 +57,7 @@ translate() {
 				}
 			}
 		}
-		translate(v = [-60, 0, 0]) {
+		translate(v = [65, 0, 0]) {
 			difference() {
 				mirror(v = [1, 0, 0]) {
 					difference() {
@@ -57,9 +65,9 @@ translate() {
 							union() {
 								translate(v = [4.8450000000, 0, 0]) {
 									difference() {
-										cube(center = true, size = [35.3100000000, 40, 20]);
+										cube(center = true, size = [30.3100000000, 40, 20]);
 										rotate(a = 90, v = [0, 1, 0]) {
-											cylinder(h = 70.6200000000, r = 7.0000000000, center = true);
+											cylinder(h = 60.6200000000, r = 7.0000000000, center = true);
 										}
 									}
 								}
@@ -73,9 +81,9 @@ translate() {
 								}
 								translate(v = [-4.8450000000, 0, 0]) {
 									difference() {
-										cube(center = true, size = [35.3100000000, 40, 20]);
+										cube(center = true, size = [30.3100000000, 40, 20]);
 										rotate(a = 90, v = [0, 1, 0]) {
-											cylinder(h = 70.6200000000, r = 7.0000000000, center = true);
+											cylinder(h = 60.6200000000, r = 7.0000000000, center = true);
 										}
 									}
 								}
@@ -87,12 +95,138 @@ translate() {
 					}
 				}
 				union() {
-					translate(v = []) {
+					translate(v = [-13.0000000000, 0, 0]) {
 						translate(v = [0, -15.5000000000, 0]) {
 							cylinder($fn = 32, h = 100, r = 3.0000000000, center = true);
 						}
 						translate(v = [0, 15.5000000000, 0]) {
 							cylinder($fn = 32, h = 100, r = 3.0000000000, center = true);
+						}
+					}
+					translate(v = [13.0000000000, 0, 0]) {
+						translate(v = [0, -15.5000000000, 0]) {
+							cylinder($fn = 32, h = 100, r = 3.0000000000, center = true);
+						}
+						translate(v = [0, 15.5000000000, 0]) {
+							cylinder($fn = 32, h = 100, r = 3.0000000000, center = true);
+						}
+					}
+				}
+			}
+		}
+		translate(v = [0, 70, 0]) {
+			translate(v = [0, 0, 0]) {
+				difference() {
+					rotate(a = 90, v = [0, 0, 1]) {
+						difference() {
+							difference() {
+								union() {
+									translate(v = [4.8450000000, 0, 0]) {
+										difference() {
+											cube(center = true, size = [30.3100000000, 40, 20]);
+											rotate(a = 90, v = [0, 1, 0]) {
+												cylinder(h = 60.6200000000, r = 7.0000000000, center = true);
+											}
+										}
+									}
+									translate(v = [0, 0, 0]) {
+										difference() {
+											cube(center = true, size = [4.6900000000, 40, 20]);
+											rotate(a = 90, v = [0, 1, 0]) {
+												cylinder(h = 9.3800000000, r = 4.2000000000, center = true);
+											}
+										}
+									}
+									translate(v = [-4.8450000000, 0, 0]) {
+										difference() {
+											cube(center = true, size = [30.3100000000, 40, 20]);
+											rotate(a = 90, v = [0, 1, 0]) {
+												cylinder(h = 60.6200000000, r = 7.0000000000, center = true);
+											}
+										}
+									}
+								}
+								translate(v = [0, 0, 10.0000000000]) {
+									cube(center = true, size = [146.9000000000, 40, 20]);
+								}
+							}
+						}
+					}
+					union() {
+						translate(v = [-13.0000000000, 0, 0]) {
+							translate(v = [0, -15.5000000000, 0]) {
+								cylinder($fn = 32, h = 100, r = 3.0000000000, center = true);
+							}
+							translate(v = [0, 15.5000000000, 0]) {
+								cylinder($fn = 32, h = 100, r = 3.0000000000, center = true);
+							}
+						}
+						translate(v = [13.0000000000, 0, 0]) {
+							translate(v = [0, -15.5000000000, 0]) {
+								cylinder($fn = 32, h = 100, r = 3.0000000000, center = true);
+							}
+							translate(v = [0, 15.5000000000, 0]) {
+								cylinder($fn = 32, h = 100, r = 3.0000000000, center = true);
+							}
+						}
+					}
+				}
+			}
+			translate(v = [65, 0, 0]) {
+				difference() {
+					rotate(a = 90, v = [0, 0, 1]) {
+						mirror(v = [1, 0, 0]) {
+							difference() {
+								difference() {
+									union() {
+										translate(v = [4.8450000000, 0, 0]) {
+											difference() {
+												cube(center = true, size = [30.3100000000, 40, 20]);
+												rotate(a = 90, v = [0, 1, 0]) {
+													cylinder(h = 60.6200000000, r = 7.0000000000, center = true);
+												}
+											}
+										}
+										translate(v = [0, 0, 0]) {
+											difference() {
+												cube(center = true, size = [4.6900000000, 40, 20]);
+												rotate(a = 90, v = [0, 1, 0]) {
+													cylinder(h = 9.3800000000, r = 4.2000000000, center = true);
+												}
+											}
+										}
+										translate(v = [-4.8450000000, 0, 0]) {
+											difference() {
+												cube(center = true, size = [30.3100000000, 40, 20]);
+												rotate(a = 90, v = [0, 1, 0]) {
+													cylinder(h = 60.6200000000, r = 7.0000000000, center = true);
+												}
+											}
+										}
+									}
+									translate(v = [0, 0, 10.0000000000]) {
+										cube(center = true, size = [146.9000000000, 40, 20]);
+									}
+								}
+							}
+						}
+					}
+					union() {
+						translate(v = [-13.0000000000, 0, 0]) {
+							translate(v = [0, -15.5000000000, 0]) {
+								cylinder($fn = 32, h = 100, r = 3.0000000000, center = true);
+							}
+							translate(v = [0, 15.5000000000, 0]) {
+								cylinder($fn = 32, h = 100, r = 3.0000000000, center = true);
+							}
+						}
+						translate(v = [13.0000000000, 0, 0]) {
+							translate(v = [0, -15.5000000000, 0]) {
+								cylinder($fn = 32, h = 100, r = 3.0000000000, center = true);
+							}
+							translate(v = [0, 15.5000000000, 0]) {
+								cylinder($fn = 32, h = 100, r = 3.0000000000, center = true);
+							}
 						}
 					}
 				}
@@ -167,15 +301,25 @@ class Support( Element ):
 
     def create_bolt_holes( self ):
 
-        offset_from_center = self.s.half('y') - \
+
+
+        x_offset_from_center = self.s.half('x') - \
+                             (self.p.get('bolt_hole_radius') + \
+                              self.p.get('bolt_hole_outer_offset'))
+
+        y_offset_from_center = self.s.half('y') - \
                              (self.p.get('bolt_hole_radius') + \
                               self.p.get('bolt_hole_outer_offset'))
 
         return union() (
-            translate([]) (
-                back( offset_from_center ) ( self.create_bolt_hole() ),
-                forward( offset_from_center ) ( self.create_bolt_hole() )
-            )
+            left( x_offset_from_center ) (
+                back( y_offset_from_center ) ( self.create_bolt_hole() ),
+                forward( y_offset_from_center ) ( self.create_bolt_hole() )
+            ),
+            right( x_offset_from_center ) (
+                back( y_offset_from_center ) ( self.create_bolt_hole() ),
+                forward( y_offset_from_center ) ( self.create_bolt_hole() )
+            ),
         )
 
     def create_first_layer( self ):
@@ -216,18 +360,43 @@ class Support( Element ):
             self.create_first_layer()
         )
 
-    def create_third_layer( self ):
-        return self.create_first_layer()
-
     def create( self ):
+
+        spacing = 30
+
+        # position with a equidistant point-cloud
+
         return union() (
-            left( 0 ) (
+            #
+            translate( [0, 0, 0] ) (
                 self.apply_bolt_holes( self.create_first_layer() )
             ),
-            left( self.s.x + 20 ) (
+            translate( [ self.s.x + spacing, 0, 0] ) (
                 self.apply_bolt_holes( self.create_second_layer() )
             ),
 
+
+            #
+
+            translate( [0, self.s.y + spacing, 0] ) (
+
+                translate( [ 0, 0, 0 ] ) (
+                    self.apply_bolt_holes(
+                        rotate( 90, [0,0,1] ) (
+                            self.create_first_layer()
+                        )
+                    )
+                ),
+
+                translate( [ self.s.x + spacing, 0, 0 ] ) (
+                    self.apply_bolt_holes(
+                        rotate( 90, [0,0,1] ) (
+                            self.create_second_layer()
+                        )
+                    )
+                )
+
+            )
 
         )
 
@@ -235,7 +404,7 @@ if __name__ == "__main__":
 
 
     e = Support(
-        Size( 40, 40, 20 ),
+        Size( 35, 40, 20 ),
         parameters={
             'segments': 32,
             'outer_length': 5.0 ,
