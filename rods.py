@@ -1,109 +1,3 @@
-
-
-translate() {
-	union() {
-		translate(v = [0, 0, 0]) {
-			difference() {
-				difference() {
-					difference() {
-						union() {
-							translate(v = [4.8450000000, 0, 0]) {
-								difference() {
-									cube(center = true, size = [35.3100000000, 40, 20]);
-									rotate(a = 90, v = [0, 1, 0]) {
-										cylinder(h = 70.6200000000, r = 7.0000000000, center = true);
-									}
-								}
-							}
-							translate(v = [0, 0, 0]) {
-								difference() {
-									cube(center = true, size = [4.6900000000, 40, 20]);
-									rotate(a = 90, v = [0, 1, 0]) {
-										cylinder(h = 9.3800000000, r = 4.2000000000, center = true);
-									}
-								}
-							}
-							translate(v = [-4.8450000000, 0, 0]) {
-								difference() {
-									cube(center = true, size = [35.3100000000, 40, 20]);
-									rotate(a = 90, v = [0, 1, 0]) {
-										cylinder(h = 70.6200000000, r = 7.0000000000, center = true);
-									}
-								}
-							}
-						}
-						translate(v = [0, 0, 10.0000000000]) {
-							cube(center = true, size = [146.9000000000, 40, 20]);
-						}
-					}
-				}
-				union() {
-					translate(v = []) {
-						translate(v = [0, -15.5000000000, 0]) {
-							cylinder($fn = 32, h = 100, r = 3.0000000000, center = true);
-						}
-						translate(v = [0, 15.5000000000, 0]) {
-							cylinder($fn = 32, h = 100, r = 3.0000000000, center = true);
-						}
-					}
-				}
-			}
-		}
-		translate(v = [-60, 0, 0]) {
-			difference() {
-				mirror(v = [1, 0, 0]) {
-					difference() {
-						difference() {
-							union() {
-								translate(v = [4.8450000000, 0, 0]) {
-									difference() {
-										cube(center = true, size = [35.3100000000, 40, 20]);
-										rotate(a = 90, v = [0, 1, 0]) {
-											cylinder(h = 70.6200000000, r = 7.0000000000, center = true);
-										}
-									}
-								}
-								translate(v = [0, 0, 0]) {
-									difference() {
-										cube(center = true, size = [4.6900000000, 40, 20]);
-										rotate(a = 90, v = [0, 1, 0]) {
-											cylinder(h = 9.3800000000, r = 4.2000000000, center = true);
-										}
-									}
-								}
-								translate(v = [-4.8450000000, 0, 0]) {
-									difference() {
-										cube(center = true, size = [35.3100000000, 40, 20]);
-										rotate(a = 90, v = [0, 1, 0]) {
-											cylinder(h = 70.6200000000, r = 7.0000000000, center = true);
-										}
-									}
-								}
-							}
-							translate(v = [0, 0, 10.0000000000]) {
-								cube(center = true, size = [146.9000000000, 40, 20]);
-							}
-						}
-					}
-				}
-				union() {
-					translate(v = []) {
-						translate(v = [0, -15.5000000000, 0]) {
-							cylinder($fn = 32, h = 100, r = 3.0000000000, center = true);
-						}
-						translate(v = [0, 15.5000000000, 0]) {
-							cylinder($fn = 32, h = 100, r = 3.0000000000, center = true);
-						}
-					}
-				}
-			}
-		}
-	}
-}
-/***********************************************
-******      SolidPython code:      *************
-************************************************
- 
 # -*- coding: utf-8 -*-
 
 from core import *
@@ -220,14 +114,28 @@ class Support( Element ):
         return self.create_first_layer()
 
     def create( self ):
+
+        spacing = 20
+
+        # position with a equidistant point-cloud
+
         return union() (
-            left( 0 ) (
+            translate( 0 ) (
                 self.apply_bolt_holes( self.create_first_layer() )
             ),
-            left( self.s.x + 20 ) (
+            translate( self.s.x + spacing ) (
                 self.apply_bolt_holes( self.create_second_layer() )
             ),
-
+            translate( self.s.y + spacing ) (
+                self.apply_bolt_holes(
+                    self.create_first_layer()
+                )
+            )
+            translate( self.s.y + spacing ) (
+                self.apply_bolt_holes(
+                    self.create_first_layer()
+                )
+            )
 
         )
 
@@ -250,7 +158,4 @@ if __name__ == "__main__":
     )
     e.create()
 
-    scad_render_to_file( e.put(), "project.scad" ) 
- 
-***********************************************/
-                            
+    scad_render_to_file( e.put(), "project.scad" )

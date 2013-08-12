@@ -17,12 +17,53 @@ def partition( m, n ):
 
 
 
+class Scalable:
+    """
+    Implies that if you reduced all sizes, and all positions towads the origin,
+    you will have a scaled version of your element.
+
+    Have to watch out for rounding errors.
+    """
+    pass
+
+
+class Movable:
+    def move( self, position ):
+        self.position.x += position.x
+        self.position.y += position.y
+        self.position.z += position.z
+
+    def __gt__( self, axis, distance ):
+        pass
+
+    def __lt__( self, axis, distance ):
+        pass
+
+    def left( self, distance ):
+        pass
+
+    def right( self, distance ):
+        pass
+
+    def up( self, distance ):
+        pass
+
+    def down( self, distance ):
+        pass
+
+    def forward( self, distance ):
+        pass
+
+    def back( self, distance ):
+        pass
 
 
 
 
-class Element:
-    def __init__( self, size, parameters=None, *args, **kwargs ):
+
+
+class Element( Movable, Scalable ):
+    def __init__( self, size, position=None, parameters=None, *args, **kwargs ):
         """
         The constructor accepts the parameters common
         to all element children. It can also accept
@@ -30,10 +71,12 @@ class Element:
         hole_radius for hole element).
         """
         self.size = size
+        self.position = position
         self.parameters = parameters
 
         self.s = self.size
         self.p = self.parameters
+
 
         self.sz = self.size
         self.prmtrs = self.parameters
@@ -42,10 +85,45 @@ class Element:
         pass
 
     def put( self, position=None ):
-        position = position if position else [0, 0, 0]
+        position = position if position else self.position
         return translate(position) (
             self.create()
         )
+
+
+
+
+
+
+
+
+
+class Position:
+    def __init__( self, x, y, z ):
+        self.coordinates = {
+            'x': x,
+            'y': y,
+            'z': z
+        }
+
+    def __getitem__( self, axis ):
+        return self.coordinates[self.axis]
+
+    def x( self ):
+        return self.coordinates['x']
+
+    def y( self ):
+        return self.coordinates['y']
+
+    def z( self ):
+        return self.coordinates['z']
+
+
+
+
+
+
+
 
 
 class Parameters:
