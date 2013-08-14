@@ -131,9 +131,9 @@ class Support( Element ):
                 self.apply_bolt_holes( self.create_first_layer() )
             ),
 
-            translate( [ self.s.x + spacing, 0, 0] ) (
-                self.apply_bolt_holes( self.create_second_layer() )
-            ),
+            # translate( [ self.s.x + spacing, 0, 0] ) (
+            #    self.apply_bolt_holes( self.create_second_layer() )
+            # ),
 
 
             # translate( [0, self.s.y + spacing, 0] ) (

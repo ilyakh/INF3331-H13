@@ -57,63 +57,6 @@ translate() {
 				}
 			}
 		}
-		translate(v = [62, 0, 0]) {
-			difference() {
-				mirror(v = [1, 0, 0]) {
-					difference() {
-						difference() {
-							union() {
-								translate(v = [4.8750000000, 0, 0]) {
-									difference() {
-										cube(center = true, size = [27.2500000000, 40, 20]);
-										rotate(a = 90, v = [0, 1, 0]) {
-											cylinder(h = 54.5000000000, r = 7.0000000000, center = true);
-										}
-									}
-								}
-								translate(v = [0, 0, 0]) {
-									difference() {
-										cube(center = true, size = [4.7500000000, 40, 20]);
-										rotate(a = 90, v = [0, 1, 0]) {
-											cylinder(h = 9.5000000000, r = 5.3500000000, center = true);
-										}
-									}
-								}
-								translate(v = [-4.8750000000, 0, 0]) {
-									difference() {
-										cube(center = true, size = [27.2500000000, 40, 20]);
-										rotate(a = 90, v = [0, 1, 0]) {
-											cylinder(h = 54.5000000000, r = 7.0000000000, center = true);
-										}
-									}
-								}
-							}
-							translate(v = [0, 0, 10.0000000000]) {
-								cube(center = true, size = [147.5000000000, 40, 20]);
-							}
-						}
-					}
-				}
-				union() {
-					translate(v = [-11.5000000000, 0, 0]) {
-						translate(v = [0, -15.5000000000, 0]) {
-							cylinder($fn = 32, h = 100, r = 3.0000000000, center = true);
-						}
-						translate(v = [0, 15.5000000000, 0]) {
-							cylinder($fn = 32, h = 100, r = 3.0000000000, center = true);
-						}
-					}
-					translate(v = [11.5000000000, 0, 0]) {
-						translate(v = [0, -15.5000000000, 0]) {
-							cylinder($fn = 32, h = 100, r = 3.0000000000, center = true);
-						}
-						translate(v = [0, 15.5000000000, 0]) {
-							cylinder($fn = 32, h = 100, r = 3.0000000000, center = true);
-						}
-					}
-				}
-			}
-		}
 	}
 }
 /***********************************************
@@ -253,9 +196,9 @@ class Support( Element ):
                 self.apply_bolt_holes( self.create_first_layer() )
             ),
 
-            translate( [ self.s.x + spacing, 0, 0] ) (
-                self.apply_bolt_holes( self.create_second_layer() )
-            ),
+            # translate( [ self.s.x + spacing, 0, 0] ) (
+            #    self.apply_bolt_holes( self.create_second_layer() )
+            # ),
 
 
             # translate( [0, self.s.y + spacing, 0] ) (
