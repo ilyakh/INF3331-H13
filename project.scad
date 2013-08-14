@@ -9,7 +9,7 @@ translate() {
 						union() {
 							translate(v = [3.6250000000, 0, 0]) {
 								difference() {
-									cube(center = true, size = [30.2500000000, 35, 20]);
+									cube(center = true, size = [30.2500000000, 35, 10]);
 									rotate(a = 90, v = [0, 1, 0]) {
 										cylinder(h = 60.5000000000, r = 3.5000000000, center = true);
 									}
@@ -17,7 +17,7 @@ translate() {
 							}
 							translate(v = [0, 0, 0]) {
 								difference() {
-									cube(center = true, size = [4.7500000000, 35, 20]);
+									cube(center = true, size = [4.7500000000, 35, 10]);
 									rotate(a = 90, v = [0, 1, 0]) {
 										cylinder(h = 9.5000000000, r = 2.6750000000, center = true);
 									}
@@ -25,15 +25,15 @@ translate() {
 							}
 							translate(v = [-3.6250000000, 0, 0]) {
 								difference() {
-									cube(center = true, size = [30.2500000000, 35, 20]);
+									cube(center = true, size = [30.2500000000, 35, 10]);
 									rotate(a = 90, v = [0, 1, 0]) {
 										cylinder(h = 60.5000000000, r = 3.5000000000, center = true);
 									}
 								}
 							}
 						}
-						translate(v = [0, 0, 10.0000000000]) {
-							cube(center = true, size = [97.5000000000, 35, 20]);
+						translate(v = [0, 0, 5.0000000000]) {
+							cube(center = true, size = [97.5000000000, 35, 10]);
 						}
 					}
 				}
@@ -231,7 +231,7 @@ if __name__ == "__main__":
 
 
     e = Support(
-        Size( 35, 35, 20 ),
+        Size( 35, 35, 10 ),
         parameters={
             'segments': 32,
             'outer_length': 2.5 ,

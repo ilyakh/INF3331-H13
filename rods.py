@@ -166,7 +166,7 @@ if __name__ == "__main__":
 
 
     e = Support(
-        Size( 35, 35, 20 ),
+        Size( 35, 35, 10 ),
         parameters={
             'segments': 32,
             'outer_length': 2.5 ,
