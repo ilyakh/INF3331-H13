@@ -166,15 +166,15 @@ if __name__ == "__main__":
 
 
     e = Support(
-        Size( 32, 40, 20 ),
+        Size( 35, 35, 20 ),
         parameters={
             'segments': 32,
-            'outer_length': 5.0 ,
-            'outer_radius': 7.0,
+            'outer_length': 2.5 ,
+            'outer_radius': 7.0 / 2.0,
             'core_length': 4.75,
-            'core_radius': 5.35,
-            'inner_length': 5.0,
-            'inner_radius': 7.0,
+            'core_radius': 5.35 / 2.0,
+            'inner_length': 2.5,
+            'inner_radius': 7.0 / 2.0,
             'bolt_hole_radius': 3.0,
             'bolt_hole_outer_offset': 1.5
         }
