@@ -16,7 +16,8 @@ class Support( Element ):
                 cylinder(
                     h=length *2,
                     r=radius,
-                    center=True
+                    center=True,
+                    segments=self.p.get("segments")
                 )
             )
         )
@@ -31,7 +32,8 @@ class Support( Element ):
                 cylinder(
                     h=length *2,
                     r=radius,
-                    center=True
+                    center=True,
+                    segments=self.p.get("segments")
                 )
             )
         )
@@ -46,7 +48,8 @@ class Support( Element ):
                 cylinder(
                     h=length *2,
                     r=radius,
-                    center=True
+                    center=True,
+                    segments=self.p.get("segments")
                 )
             )
         )
@@ -103,7 +106,8 @@ class Support( Element ):
                         [-(self.p.get('outer_length') / 2.0 + half_core_length), 0, 0]
                     ) ( self.create_outer() )
                 ),
-                translate([ 0, 0, self.s.half('z') ]) (
+                # half to subtract
+                translate([ 0, 0, self.s.half('z') + self.p.get("vertical_compensation") ]) (
                     cube([total_length * 10.0, self.s.y, self.s.z], center=True )
                 )
             )
@@ -166,17 +170,18 @@ if __name__ == "__main__":
 
 
     e = Support(
-        Size( 35, 35, 10 ),
+        Size( 35, 35, 15 ),
         parameters={
-            'segments': 32,
-            'outer_length': 2.5 ,
-            'outer_radius': 7.0 / 2.0,
+            'segments': 72,
+            'outer_length': 0 ,
+            'outer_radius': 3.7,
             'core_length': 4.75,
             'core_radius': 5.35 / 2.0,
-            'inner_length': 2.5,
-            'inner_radius': 7.0 / 2.0,
-            'bolt_hole_radius': 3.0,
-            'bolt_hole_outer_offset': 1.5
+            'inner_length': 0,
+            'inner_radius': 3.7,
+            'bolt_hole_radius': 1.5,
+            'bolt_hole_outer_offset': 1.5,
+            'vertical_compensation': 0.25
         }
     )
     e.create()
