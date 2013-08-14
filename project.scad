@@ -11,7 +11,7 @@ translate() {
 								difference() {
 									cube(center = true, size = [30.2500000000, 35, 15]);
 									rotate(a = 90, v = [0, 1, 0]) {
-										cylinder($fn = 72, h = 60.5000000000, r = 3.7000000000, center = true);
+										cylinder($fn = 72, h = 60.5000000000, r = 3.5500000000, center = true);
 									}
 								}
 							}
@@ -27,12 +27,12 @@ translate() {
 								difference() {
 									cube(center = true, size = [30.2500000000, 35, 15]);
 									rotate(a = 90, v = [0, 1, 0]) {
-										cylinder($fn = 72, h = 60.5000000000, r = 3.7000000000, center = true);
+										cylinder($fn = 72, h = 60.5000000000, r = 3.5500000000, center = true);
 									}
 								}
 							}
 						}
-						translate(v = [0, 0, 7.7500000000]) {
+						translate(v = [0, 0, 7.6500000000]) {
 							cube(center = true, size = [47.5000000000, 35, 15]);
 						}
 					}
@@ -239,14 +239,14 @@ if __name__ == "__main__":
         parameters={
             'segments': 72,
             'outer_length': 0 ,
-            'outer_radius': 3.7,
+            'outer_radius': 3.55,
             'core_length': 4.75,
             'core_radius': 5.35 / 2.0,
             'inner_length': 0,
-            'inner_radius': 3.7,
+            'inner_radius': 3.55,
             'bolt_hole_radius': 1.5,
             'bolt_hole_outer_offset': 1.5,
-            'vertical_compensation': 0.25
+            'vertical_compensation': 0.15
         }
     )
     e.create()
