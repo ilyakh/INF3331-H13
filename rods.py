@@ -127,50 +127,52 @@ class Support( Element ):
         # position with a equidistant point-cloud
 
         return union() (
-            #
             translate( [0, 0, 0] ) (
                 self.apply_bolt_holes( self.create_first_layer() )
             ),
+
             translate( [ self.s.x + spacing, 0, 0] ) (
                 self.apply_bolt_holes( self.create_second_layer() )
             ),
 
 
+            # translate( [0, self.s.y + spacing, 0] ) (
             #
-
-            translate( [0, self.s.y + spacing, 0] ) (
-
-                translate( [ 0, 0, 0 ] ) (
-                    self.apply_bolt_holes(
-                        rotate( 90, [0,0,1] ) (
-                            self.create_first_layer()
-                        )
-                    )
-                ),
-
-                translate( [ self.s.x + spacing, 0, 0 ] ) (
-                    self.apply_bolt_holes(
-                        rotate( 90, [0,0,1] ) (
-                            self.create_second_layer()
-                        )
-                    )
-                )
-
-            )
-
+            #     translate( [ 0, 0, 0 ] ) (
+            #         self.apply_bolt_holes(
+            #             rotate( 90, [0,0,1] ) (
+            #                 self.create_first_layer()
+            #             )
+            #         )
+            #     ),
+            #
+            #     translate( [ self.s.x + spacing, 0, 0 ] ) (
+            #         self.apply_bolt_holes(
+            #             rotate( 90, [0,0,1] ) (
+            #                 self.create_second_layer()
+            #             )
+            #         )
+            #     )
+            # )
+            #
         )
+
+
+
+
+
 
 if __name__ == "__main__":
 
 
     e = Support(
-        Size( 36, 40, 20 ),
+        Size( 32, 40, 20 ),
         parameters={
             'segments': 32,
             'outer_length': 5.0 ,
             'outer_radius': 7.0,
-            'core_length': 4.69,
-            'core_radius': 4.20,
+            'core_length': 4.75,
+            'core_radius': 5.35,
             'inner_length': 5.0,
             'inner_radius': 7.0,
             'bolt_hole_radius': 3.0,
