@@ -1,7 +1,11 @@
 # -*- coding: utf8 -*- 
 
+from __future__ import division
+
 from solid import *
 from solid.utils import *
+
+
 
 
 from metrics import *
@@ -80,6 +84,9 @@ class Element( Movable, Scalable ):
 
         self.sz = self.size
         self.prmtrs = self.parameters
+
+    def __getitem__( self, name ):
+        return self.parameters.get(name)
 
     def create( self ):
         pass
