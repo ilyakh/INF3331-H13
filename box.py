@@ -105,6 +105,20 @@ class Quarter(Element):
             center=False
         )
 
+        if self['hollow']:
+            plate = difference() (
+                plate,
+                translate([self['height'], self['height'], 0]) (
+                    cube([
+                        self['usable_area_width'] / 2.5,
+                        self['usable_area_length'] / 2.5,
+                        self['height']
+                    ])
+                )
+            )
+
+
+
         return union() (
             plate,
             *features
@@ -126,10 +140,9 @@ class Quarter(Element):
             )
         )
 
-    def create_wide_wall( self ):
+    def create_narrow_wall( self ):
 
-
-        wing_length = ( (self['usable_area_length'] / 2.0) - ( self['attachment_hole_padding'] * 2))
+        wing_length = ( (self['usable_area_length'] / 2.0) - ( self['attachment_hole_padding'] * 2)) - self['hole_markup']
 
         wing = union() (
             cube([
@@ -137,7 +150,7 @@ class Quarter(Element):
                 self['height'],
                 self['height']
             ]),
-            translate([ wing_length / 2.0, self['height'], self['height'] / 2.0]) (
+            translate([ wing_length / 2.0, self['height'], self['height'] / 2.0] ) (
                 rotate( 90, [0, 1, 0] ) (
                     cylinder( self['height'] / 2.0, wing_length, segments=32, center=True )
                 )
@@ -145,13 +158,14 @@ class Quarter(Element):
         )
 
 
-        wing = translate( [ self['attachment_hole_padding'] * 0.5, 0, 0] ) (
+        wing = translate( [ self['attachment_hole_padding'] * 0.5 + ( self['hole_markup'] / 2.0), 0, 0] ) (
             wing
         )
 
         wing = rotate(90, [0,0,1]) (
             wing
         )
+
 
 
         quarter_wall = union() (
@@ -162,22 +176,128 @@ class Quarter(Element):
                 self['height']
             ]),
             # the wing
-            wing
-
+            wing,
         )
+
+        if self['hollow']:
+            quarter_wall = difference() (
+                quarter_wall,
+                translate([ self['height'], 0, 0 ]) (
+                    cube([
+                        self['wall_height'] / 3.0,
+                        self['usable_area_length'] / 2.5,
+                        self['height']
+                    ])
+                )
+            )
 
 
         half_wall = union() (
             quarter_wall,
             mirror( [0, 1, 0] ) (
                 quarter_wall
-            )
+            ),
         )
 
         wall = union() (
 
-            left( self['wall_height']) (half_wall),
+            left( self['wall_height']) (
+                half_wall
+            ),
+            mirror( [-1, 0, 0] ) (
+                half_wall
+            ),
+        )
 
+        hole = union() (
+            left( self.p.get('wall_height') / 2.0 ) (
+                cylinder( self.p.get('bnc_contact_radius'), 10 )
+            ),
+            translate([
+                -self.p.get('wall_height') / 2.0,
+                -self.p.get('usable_area_width') / 6.0,
+                0
+            ]) (
+                cube([
+                    self.p.get('bnc_contact_radius'),
+                    self.p.get('wall_height'),
+                    self.p.get('wall_height') * 2.0
+                ], center=True)
+            )
+        )
+
+        wall = difference() (
+            wall,
+            hole
+        )
+
+        return color('red') ( wall )
+
+
+    def create_wide_wall( self ):
+
+        wing_length = ( (self['usable_area_width'] / 2.0) - ( self['attachment_hole_padding'] * 2)) - self['hole_markup']
+
+        wing = union() (
+            cube([
+                wing_length,
+                self['height'],
+                self['height']
+            ]),
+            translate([ wing_length / 2.0, self['height'], self['height'] / 2.0] ) (
+                rotate( 90, [0, 1, 0] ) (
+                    cylinder( self['height'] / 2.0, wing_length, segments=32, center=True )
+                )
+            )
+        )
+
+
+        wing = translate( [ self['attachment_hole_padding'] * 0.5 + ( self['hole_markup'] / 2.0), 0, 0] ) (
+            wing
+        )
+
+        wing = rotate(90, [0,0,1]) (
+            wing
+        )
+
+
+
+        quarter_wall = union() (
+            # the wall itself
+            cube( [
+                self['wall_height'] / 2.0,
+                self['usable_area_width'] / 2.0,
+                self['height']
+            ]),
+            # the wing
+            wing,
+        )
+
+        if self['hollow']:
+            quarter_wall = difference() (
+                quarter_wall,
+                translate([ self['height'], 0, 0 ]) (
+                    cube([
+                        self['wall_height'] / 3.0,
+                        self['usable_area_width'] / 2.5,
+                        self['height']
+                    ])
+                )
+            )
+
+
+        half_wall = union() (
+            quarter_wall,
+            mirror( [0, 1, 0] ) (
+                quarter_wall
+            ),
+        )
+
+        wall = union() (
+
+            left( self['wall_height']) (
+                half_wall
+            ),
             mirror( [-1, 0, 0] ) (
                 half_wall
             ),
@@ -185,11 +305,18 @@ class Quarter(Element):
 
         return color('red') ( wall )
 
+    def create_holes(self):
+        pass
+
+
     def create(self):
         return union() (
-            self.create_usable_area(),
-            left( self['usable_area_width'] / 2.0 + 10.0 ) (
-                self.create_wide_wall()
+            # self.create_usable_area(),
+
+            forward( 10  ) (
+                rotate( -90, [0, 0, 1] ) (
+                    self.create_narrow_wall()
+                )
             )
         )
 
@@ -197,14 +324,16 @@ if __name__ == "__main__":
     t = Quarter(
         None,
         parameters={
-            'height': 1.0,
-            'usable_area_width': 30.0,
-            'usable_area_length': 80.0,
+            'height': 1.5,
+            'usable_area_width': 120.0,
+            'usable_area_length': 65.0,
             'attachment_area_width': 2.0,
             'attachment_hole_padding': 2.0,
-            'wall_height': 5.0,
+            'wall_height': 40.0,
             'wing_markup': 0.5,
-            'hole_markup': 0.1
+            'hole_markup': 0.5,
+            'hollow': False,
+            'bnc_contact_radius': 8.56 / 2.0
         }
     )
 
