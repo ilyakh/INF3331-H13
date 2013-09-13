@@ -2,42 +2,9 @@
 
 union() {
 	union() {
-		difference() {
-			translate() {
-				union() {
-					scale(v = [1.0000000000, 0.8000000000, 1.0000000000]) {
-						difference() {
-							cylinder(h = 20.0000000000, r = 60.0000000000, center = true);
-							cylinder(h = 30.0000000000, r = 50.0000000000, center = true);
-							translate(v = [0, -30.0000000000, 0]) {
-								cube(center = true, size = [120.0000000000, 60.0000000000, 30.0000000000]);
-							}
-						}
-					}
-					translate(v = [55.0000000000, -50.0000000000, 0]) {
-						cube(center = true, size = [10.0000000000, 100.0000000000, 20.0000000000]);
-					}
-					translate(v = [-55.0000000000, -50.0000000000, 0]) {
-						cube(center = true, size = [10.0000000000, 100.0000000000, 20.0000000000]);
-					}
-					translate(v = [0, -110.0000000000, 0]) {
-						cube(center = true, size = [120.0000000000, 10.0000000000, 20.0000000000]);
-					}
-				}
-			}
-			translate(v = [0, 30.0000000000, 0]) {
-				translate(v = [30.0000000000, 0, 0]) {
-					color(c = "red") {
-						rotate(a = 90, v = [1, 0, 0]) {
-							cylinder(h = 80.0000000000, r = 4.5000000000, center = true);
-						}
-					}
-				}
-			}
-		}
-		translate() {
-			color(c = "red") {
-				scale(v = [1.3000000000, 1.3000000000, 1.0000000000]) {
+		union() {
+			difference() {
+				translate() {
 					union() {
 						scale(v = [1.0000000000, 0.8000000000, 1.0000000000]) {
 							difference() {
@@ -54,17 +21,72 @@ union() {
 						translate(v = [-55.0000000000, -50.0000000000, 0]) {
 							cube(center = true, size = [10.0000000000, 100.0000000000, 20.0000000000]);
 						}
+						translate(v = [0, -110.0000000000, 0]) {
+							cube(center = true, size = [120.0000000000, 10.0000000000, 20.0000000000]);
+						}
+					}
+				}
+				translate(v = [0, 30.0000000000, 0]) {
+					translate(v = [30.0000000000, 0, 0]) {
+						color(c = "red") {
+							rotate(a = 90, v = [1, 0, 0]) {
+								cylinder(h = 80.0000000000, r = 4.5000000000, center = true);
+							}
+						}
+					}
+				}
+			}
+			translate() {
+				color(c = "red") {
+					scale(v = [1.3000000000, 1.3000000000, 1.0000000000]) {
+						union() {
+							scale(v = [1.0000000000, 0.8000000000, 1.0000000000]) {
+								difference() {
+									cylinder(h = 20.0000000000, r = 60.0000000000, center = true);
+									cylinder(h = 30.0000000000, r = 50.0000000000, center = true);
+									translate(v = [0, -30.0000000000, 0]) {
+										cube(center = true, size = [120.0000000000, 60.0000000000, 30.0000000000]);
+									}
+								}
+							}
+							translate(v = [55.0000000000, -50.0000000000, 0]) {
+								cube(center = true, size = [10.0000000000, 100.0000000000, 20.0000000000]);
+							}
+							translate(v = [-55.0000000000, -50.0000000000, 0]) {
+								cube(center = true, size = [10.0000000000, 100.0000000000, 20.0000000000]);
+							}
+						}
+					}
+				}
+			}
+		}
+		translate() {
+			translate(v = [0, 15.5000000000, 0]) {
+				translate(v = [30.0000000000, 0, 0]) {
+					color(c = "red") {
+						rotate(a = 90, v = [1, 0, 0]) {
+							cylinder(h = 80.0000000000, r = 3.5000000000, center = true);
+						}
 					}
 				}
 			}
 		}
 	}
 	translate() {
-		translate(v = [0, 15.5000000000, 0]) {
-			translate(v = [30.0000000000, 0, 0]) {
-				color(c = "red") {
-					rotate(a = 90, v = [1, 0, 0]) {
-						cylinder(h = 80.0000000000, r = 3.5000000000, center = true);
+		translate(v = [0, 60.0000000000, 0]) {
+			union() {
+				cube(center = true, size = [50.0000000000, 15.0000000000, 5.0000000000]);
+				translate(v = [0, 10.0000000000, 0]) {
+					union() {
+						rotate(a = 90, v = [0, 1, 0]) {
+							cylinder(h = 60.0000000000, r = 5.0000000000, center = true);
+						}
+						translate(v = [-30.0000000000, 0, 0]) {
+							sphere(r = 5.0000000000);
+						}
+						translate(v = [30.0000000000, 0, 0]) {
+							sphere(r = 5.0000000000);
+						}
 					}
 				}
 			}
@@ -231,26 +253,43 @@ class Dichroic( Element ):
 
 
 class Handle( Element ):
-    def create_handle(self):
+    def create(self):
+
+        sphere_offset = self.p.get('width') / 2.0 + self.p.get('radius')
 
         result = union() (
 
             cube([
                 self.p.get('width'),
-                self.p.get('offset'),
+                self.p.get('offset') * 1.5,
+                self.p.get('offset') / 2.0,
             ], center=True),
 
             forward( self.p.get('offset') ) (
-                rotate(90, [0, 1, 0]) (
-                    cylinder(
-                        h=self.p.get('width'),
-                        r=self.p.get('radius'),
-                        center=True
+                union() (
+                    rotate(90, [0, 1, 0]) (
+                        cylinder(
+                            h=self.p.get('width') * 1.2,
+                            r=self.p.get('radius'),
+                            center=True
+                        )
+                    ),
+
+                    left( sphere_offset ) (
+                        sphere( self.p.get('radius'))
+                    ),
+
+                    right( sphere_offset ) (
+                        sphere( self.p.get('radius'))
                     )
+
                 )
-            )
+            ),
+
 
         )
+
+        result = forward( 50 * 0.8 + self.p.get('offset') * 2 ) ( result )
 
         return result
 
@@ -295,8 +334,8 @@ if __name__ == "__main__":
 
         parameters={
             'radius': 5.0,
-            'width': 16.0,
-            'offset': 1.0
+            'width': 50.0,
+            'offset': 10.0
         }
     )
 
@@ -304,9 +343,9 @@ if __name__ == "__main__":
     b.create()
     c_hole = c.create_hole()
     c.create()
+    d.create()
 
-
-    e = a.put() - c_hole + b.put() + c.put()
+    e = a.put() - c_hole + b.put() + c.put() + d.put()
 
     scad_render_to_file( e, "project.scad" )
 

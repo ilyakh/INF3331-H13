@@ -154,26 +154,43 @@ class Dichroic( Element ):
 
 
 class Handle( Element ):
-    def create_handle(self):
+    def create(self):
+
+        sphere_offset = self.p.get('width') / 2.0 + self.p.get('radius')
 
         result = union() (
 
             cube([
                 self.p.get('width'),
-                self.p.get('offset'),
+                self.p.get('offset') * 1.5,
+                self.p.get('offset') / 2.0,
             ], center=True),
 
             forward( self.p.get('offset') ) (
-                rotate(90, [0, 1, 0]) (
-                    cylinder(
-                        h=self.p.get('width'),
-                        r=self.p.get('radius'),
-                        center=True
+                union() (
+                    rotate(90, [0, 1, 0]) (
+                        cylinder(
+                            h=self.p.get('width') * 1.2,
+                            r=self.p.get('radius'),
+                            center=True
+                        )
+                    ),
+
+                    left( sphere_offset ) (
+                        sphere( self.p.get('radius'))
+                    ),
+
+                    right( sphere_offset ) (
+                        sphere( self.p.get('radius'))
                     )
+
                 )
-            )
+            ),
+
 
         )
+
+        result = forward( 50 * 0.8 + self.p.get('offset') * 2 ) ( result )
 
         return result
 
@@ -218,8 +235,8 @@ if __name__ == "__main__":
 
         parameters={
             'radius': 5.0,
-            'width': 16.0,
-            'offset': 1.0
+            'width': 50.0,
+            'offset': 10.0
         }
     )
 
@@ -227,9 +244,9 @@ if __name__ == "__main__":
     b.create()
     c_hole = c.create_hole()
     c.create()
+    d.create()
 
-
-    e = a.put() - c_hole + b.put() + c.put()
+    e = a.put() - c_hole + b.put() + c.put() + d.put()
 
     scad_render_to_file( e, "project.scad" )
 
