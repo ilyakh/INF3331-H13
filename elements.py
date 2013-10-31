@@ -61,16 +61,6 @@ Cylinder = CylinderFactory()
 
 
 
-
-
-
-
-
-
-
-
-
-        
 class Plate( Element ):
     def create_plate( self ):
         return cube( self.size() )

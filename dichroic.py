@@ -1,120 +1,10 @@
-
-
-<<<<<<< HEAD
-translate(v = [0, 0, 0]) {
-	cube(size = [101.6000000000, 53.3000000000, 1.0000000000]);
-=======
-union() {
-	union() {
-		union() {
-			difference() {
-				translate() {
-					union() {
-						scale(v = [1.0000000000, 0.8000000000, 1.0000000000]) {
-							difference() {
-								cylinder(h = 20.0000000000, r = 60.0000000000, center = true);
-								cylinder(h = 30.0000000000, r = 50.0000000000, center = true);
-								translate(v = [0, -30.0000000000, 0]) {
-									cube(center = true, size = [120.0000000000, 60.0000000000, 30.0000000000]);
-								}
-							}
-						}
-						translate(v = [55.0000000000, -50.0000000000, 0]) {
-							cube(center = true, size = [10.0000000000, 100.0000000000, 20.0000000000]);
-						}
-						translate(v = [-55.0000000000, -50.0000000000, 0]) {
-							cube(center = true, size = [10.0000000000, 100.0000000000, 20.0000000000]);
-						}
-						translate(v = [0, -110.0000000000, 0]) {
-							cube(center = true, size = [120.0000000000, 10.0000000000, 20.0000000000]);
-						}
-					}
-				}
-				translate(v = [0, 30.0000000000, 0]) {
-					translate(v = [30.0000000000, 0, 0]) {
-						color(c = "red") {
-							rotate(a = 90, v = [1, 0, 0]) {
-								cylinder(h = 80.0000000000, r = 4.5000000000, center = true);
-							}
-						}
-					}
-				}
-			}
-			translate() {
-				color(c = "red") {
-					scale(v = [1.3000000000, 1.3000000000, 1.0000000000]) {
-						union() {
-							scale(v = [1.0000000000, 0.8000000000, 1.0000000000]) {
-								difference() {
-									cylinder(h = 20.0000000000, r = 60.0000000000, center = true);
-									cylinder(h = 30.0000000000, r = 50.0000000000, center = true);
-									translate(v = [0, -30.0000000000, 0]) {
-										cube(center = true, size = [120.0000000000, 60.0000000000, 30.0000000000]);
-									}
-								}
-							}
-							translate(v = [55.0000000000, -50.0000000000, 0]) {
-								cube(center = true, size = [10.0000000000, 100.0000000000, 20.0000000000]);
-							}
-							translate(v = [-55.0000000000, -50.0000000000, 0]) {
-								cube(center = true, size = [10.0000000000, 100.0000000000, 20.0000000000]);
-							}
-						}
-					}
-				}
-			}
-		}
-		translate() {
-			translate(v = [0, 15.5000000000, 0]) {
-				translate(v = [30.0000000000, 0, 0]) {
-					color(c = "red") {
-						rotate(a = 90, v = [1, 0, 0]) {
-							cylinder(h = 80.0000000000, r = 3.5000000000, center = true);
-						}
-					}
-				}
-			}
-		}
-	}
-	translate() {
-		translate(v = [0, 60.0000000000, 0]) {
-			union() {
-				cube(center = true, size = [50.0000000000, 15.0000000000, 5.0000000000]);
-				translate(v = [0, 10.0000000000, 0]) {
-					union() {
-						rotate(a = 90, v = [0, 1, 0]) {
-							cylinder(h = 60.0000000000, r = 5.0000000000, center = true);
-						}
-						translate(v = [-30.0000000000, 0, 0]) {
-							sphere(r = 5.0000000000);
-						}
-						translate(v = [30.0000000000, 0, 0]) {
-							sphere(r = 5.0000000000);
-						}
-					}
-				}
-			}
-		}
-	}
->>>>>>> 033f840d387372271d32b1334b5135ebd9e3fe87
-}
-/***********************************************
-******      SolidPython code:      *************
-************************************************
- 
-<<<<<<< HEAD
-# -*- coding: utf8 -*-
-=======
 # -*- coding: utf-8 -*- 
 
 # -*- coding: utf-8 -*-
->>>>>>> 033f840d387372271d32b1334b5135ebd9e3fe87
 
 from core import *
 
 
-<<<<<<< HEAD
-=======
 
 class Attachment( Element ):
     def create_arc( self ):
@@ -261,11 +151,7 @@ class Dichroic( Element ):
 
     def create( self ):
         return self.create_rod()
->>>>>>> 033f840d387372271d32b1334b5135ebd9e3fe87
 
-class Enclosure( Element ):
-    def create( self ):
-        return cube( [ self.s.x, self.s.y, self.s.z ] )
 
 class Handle( Element ):
     def create(self):
@@ -274,16 +160,6 @@ class Handle( Element ):
 
         result = union() (
 
-<<<<<<< HEAD
-    e = Enclosure(
-        Size( 101.6, 53.3, 1.0 ),
-        parameters={
-            "": 1.0
-        }
-    )
-
-    e.create()
-=======
             cube([
                 self.p.get('width'),
                 self.p.get('offset') * 1.5,
@@ -371,12 +247,7 @@ if __name__ == "__main__":
     d.create()
 
     e = a.put() - c_hole + b.put() + c.put() + d.put()
->>>>>>> 033f840d387372271d32b1334b5135ebd9e3fe87
 
     scad_render_to_file( e, "project.scad" )
 
 
- 
- 
-***********************************************/
-                            
