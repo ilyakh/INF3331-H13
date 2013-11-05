@@ -1,4 +1,5 @@
 .idea
+,idea/
 *.pyc
 .DS_Store
 src/*.pyc
