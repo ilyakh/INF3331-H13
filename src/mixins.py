@@ -5,8 +5,18 @@ from solid import *
 from solid.utils import *
 
 class Movable:
+    """
+    An element that has this mixin can be moved. It stores an internal book
+    keeping instance 'position', so it can be tracked and anchored to a
+    certain location of the three dimensional space. The anchored position
+    will affect he vector around which the element will be rotated.
+    """
+
 
     def right( self, distance=1 ):
+        """
+
+        """
         self.translate( [distance, 0, 0] )
         return self
 
@@ -31,6 +41,9 @@ class Movable:
         return self
 
     def anchor( self ):
+        """
+        Mark this position as the origin of this L{Element}.
+        """
         self.position.set([0, 0, 0])
         return self
 

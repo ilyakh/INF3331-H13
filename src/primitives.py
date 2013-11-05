@@ -1,17 +1,39 @@
 # -*- coding: utf8 -*- 
 
-import random
+import random, sys
 import preferences
 
 from element import *
 
 
+class PrimitiveFactory( object ):
+    """
+    A factory that creates either Cuboid, Frustum, Sphere or any other
+    user-defined primitive.
+    """
+    pass
 
-class CuboidFactory:
+class CuboidFactory( PrimitiveFactory ):
+    """
+
+    """
+
     def __init__( self ):
         pass
 
     def __call__( self, width=None, length=None, height=None ):
+        """
+        @param      width:   the size of the cuboid across the x-axis
+        @type       width:   float
+
+        @param      length:  the size of the cuboid across the y-axis
+        @type       length:  float
+
+        @param      height:  the size of the cuboid across the z-axis
+        @type       height:  float
+
+        @return     Element with a Cuboid body
+        """
         if width and not length:
             length = width
         if not height:
@@ -34,11 +56,26 @@ class CuboidFactory:
         return element
 
 
-class FrustumFactory:
+class FrustumFactory( PrimitiveFactory ):
+
     def __init__( self ):
         pass
 
     def __call__( self, height=None, bottom_radius=None, top_radius=None ):
+        """
+        @param      height:   the size of the cuboid across the x-axis
+        @type       height:   float
+
+        @param      bottom_radius:      the radius of the lower ring of the
+                                        frustum
+        @type       bottom_radius:      float
+
+        @param      top_radius:         the radius of the upper ring of frustum
+        @type       top_radius:         float
+
+        @return     Element with a Frustum body
+        """
+
         if not height:
             height = 1.0
 
@@ -54,8 +91,6 @@ class FrustumFactory:
 
         if top_radius is None:
             top_radius = bottom_radius
-
-
 
         element = Element()
 
@@ -79,11 +114,17 @@ class FrustumFactory:
         return element
 
 
-class SphereFactory:
+class SphereFactory( PrimitiveFactory ):
     def __init__( self ):
         pass
 
     def __call__( self, radius=None ):
+        """
+        @param      radius:     the radius of the Sphere
+        @type       radius:     float
+
+        @return     Element with a spherical body
+        """
         if not radius:
             radius = 1.0
 
@@ -104,19 +145,30 @@ class SphereFactory:
 
         return element
 
-class PolyhedronFactory:
+class PolyhedronFactory( PrimitiveFactory ):
     pass
 
 
-class UnionFunctor:
+class UnionFunctor( object ):
+    """
+    Creates a union of multiple Elements.
+
+    Can be modified to apply a special operation to each Element that comes
+    through.
+    """
     def __init__( self ):
         pass
 
     def __call__( self, *args ):
+        """
+        @param      args:      elements to join, the first element keeps the
+                               properties, while others are joined onto it
+        """
         result = args[0]
         for element in args[1:]:
-            result.join(element)
+            result.join( element )
         return result
+
 
 # uses factory methods to allow more flexible functionality
 Cuboid   = CuboidFactory()
