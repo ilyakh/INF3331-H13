@@ -15,7 +15,9 @@ class PrimitiveFactory( object ):
 
 class CuboidFactory( PrimitiveFactory ):
     """
+    Creates a Cuboid:
 
+    U{http://en.wikipedia.org/wiki/Cuboid}
     """
 
     def __init__( self ):
@@ -57,6 +59,12 @@ class CuboidFactory( PrimitiveFactory ):
 
 
 class FrustumFactory( PrimitiveFactory ):
+    """
+    Creates a Frustum.
+
+    U{http://en.wikipedia.org/wiki/Frustum}
+    """
+
 
     def __init__( self ):
         pass
@@ -115,6 +123,12 @@ class FrustumFactory( PrimitiveFactory ):
 
 
 class SphereFactory( PrimitiveFactory ):
+    """
+    Creates a sphere.
+
+    U{http://en.wikipedia.org/wiki/Sphere}
+    """
+
     def __init__( self ):
         pass
 
@@ -163,6 +177,9 @@ class UnionFunctor( object ):
         """
         @param      args:      elements to join, the first element keeps the
                                properties, while others are joined onto it
+
+        @return:    union of elements provided in args
+        @rtype:     Element
         """
         result = args[0]
         for element in args[1:]:
