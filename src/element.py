@@ -3,7 +3,7 @@
 from solid import *
 from solid.utils import *
 
-import colors, random, copy
+import colors, random, copy, numpy
 
 from mixins import *
 from metrics import *
@@ -11,7 +11,7 @@ from metrics import *
 
 
 
-class Element( object, Movable ):
+class Element( object, Movable, Scalable ):
     """
     The overloaded representation of a solidpython node or a subtree.colors
 
@@ -101,6 +101,7 @@ class Element( object, Movable ):
             self.scale( [factor, factor, factor] )
 
         return self
+
 
     def join( self, *args ):
         """

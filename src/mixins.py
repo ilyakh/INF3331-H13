@@ -13,64 +13,64 @@ class Movable:
     """
 
 
-    def right( self, distance=1 ):
+    def right( self, x=1 ):
         """
         Moves the Movable distance points to the right (positive-x axis)
 
         @param distance:    the distance to move the element for
         @type  distance:    float
         """
-        self.translate( [distance, 0, 0] )
+        self.translate( [x, 0, 0] )
         return self
 
-    def left( self, distance=1 ):
+    def left( self, x=1 ):
         """
         Moves the Movable distance points to the left (negative x-axis)
 
         @param distance:    the distance to move the element for
         @type  distance:    float
         """
-        self.translate( [-distance, 0, 0] )
+        self.translate( [-x, 0, 0] )
         return self
 
-    def forward( self, distance=1 ):
+    def forward( self, y=1 ):
         """
         Moves the Movable distance points forward (positive y-axis)
 
         @param distance:    the distance to move the element for
         @type  distance:    float
         """
-        self.translate( [0, distance, 0] )
+        self.translate( [0, y, 0] )
         return self
 
-    def back( self, distance=1 ):
+    def back( self, y=1 ):
         """
         Moves the Movable distance points back (negative y-axis)
 
         @param distance:    the distance to move the element for
         @type  distance:    float
         """
-        self.translate( [0, -distance, 0] )
+        self.translate( [0, -y, 0] )
         return self
 
-    def up( self, distance=1 ):
+    def up( self, z=1 ):
         """
         Moves the Movable distance points to the left (positive z-axis)
 
         @param distance:    the distance to move the element for
         @type  distance:    float
         """
-        self.translate( [0, 0, distance] )
+        self.translate( [0, 0, z] )
         return self
 
-    def down( self, distance=1 ):
+    def down( self, z=1 ):
         """
         Moves the Movable distance points to the left (negative z-axis)
 
         @param distance:    the distance to move the element for
         @type  distance:    float
         """
-        self.translate( [0, 0, -distance] )
+        self.translate( [0, 0, -z] )
         return self
 
     def anchor( self ):
